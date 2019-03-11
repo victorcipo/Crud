@@ -66,7 +66,7 @@ namespace CRUD.Web.Mvc.Controllers
             try
             {
                 DateTime temp;
-                if (pedidoVM.Horario < DateTime.Now && DateTime.TryParse(pedidoVM.Horario.ToString(), out temp))
+                if (pedidoVM.Horario.Date < DateTime.Now.Date && DateTime.TryParse(pedidoVM.Horario.ToString(), out temp))
                 {
                     throw new Exception("Data menor que a atual ou inválida!");
                 }
