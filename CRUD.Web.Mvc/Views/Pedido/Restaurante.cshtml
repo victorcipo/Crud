@@ -1,0 +1,96 @@
+﻿@model ICollection<CRUD.Entities.Pedido>
+@{
+    ViewBag.Title = "Consultar pedidos";
+}
+
+<div class="jumbotron jumbotron-fluid" style="margin-top: 70px">
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Funcionário</th>
+                    <th scope="col">Tamanho</th>
+                    <th scope="col">Empresa</th>
+                    <th scope="col">Horário</th>
+                    <th scope="col">Arroz</th>
+                    <th scope="col">Feijão</th>
+                    <th scope="col">Refogado</th>
+                    <th scope="col">Proteina</th>
+                    <th scope="col">Salada</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.Funcionario</td>
+                        <td>@item.Tamanho</td>
+                        <td>@item.Empresa.Nome</td>
+                        <td>@item.Horario.ToString()</td>
+                        @if (item.Arroz)
+                        {
+                            <td>Sim</td>
+                        }
+                        else
+                        {
+                            <td>Não</td>
+                        }
+                        @if (item.Feijao)
+                        {
+                            <td>Sim</td>
+                        }
+                        else
+                        {
+                            <td>Não</td>
+                        }
+                        @if (item.Refogado)
+                        {
+                            <td>Sim</td>
+                        }
+                        else
+                        {
+                            <td>Não</td>
+                        }
+                        @if (item.Proteina)
+                        {
+                            <td>Sim</td>
+                        }
+                        else
+                        {
+                            <td>Não</td>
+                        }
+                        @if (item.Salada)
+                        {
+                            <td>Sim</td>
+                        }
+                        else
+                        {
+                            <td>Não</td>
+                        }
+                    </tr>
+                }
+                @*<tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>twitter</td>
+                    </tr>*@
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,86 @@
+﻿@model CRUD.Web.Mvc.Models.FuncionarioVM
+@{
+    ViewBag.Title = "Pedido";
+}
+
+@if (ViewBag.Mensagem != null)
+{
+    <div id="mensagem" class="alert @ViewBag.ClasseAlert" role="alert" style="margin-top: 50px">
+        @ViewBag.Mensagem
+        <button id="fecharMensagem" type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<div class="jumbotron jumbotron-fluid" style="margin-top: 70px">
+    <div class="container">
+        <fieldset class="border p-2">
+            <legend class="w-auto">Pedido</legend>
+            @using (Html.BeginForm("RealizarPedido", "Pedido", FormMethod.Post, new { id = "form" }))
+            {
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="Empresas">Empresa *</label>
+                        @Html.DropDownListFor(x => x.Empresas, new SelectList(Model.Empresas, "Value", "Text"), "Selecione", new { @class = "form-control", Name = "EmpresaId", required = true })
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="Nome">Nome *</label>
+                        <input type="text" class="form-control" id="Nome" name="Funcionario" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="Tamanho">Tamanho *</label>
+                        <select id="Tamanho" class="form-control" name="Tamanho" required>
+                            <option value="">Selecione</option>
+                            <option value="Pequena">Pequena</option>
+                            <option value="Média">Média</option>
+                            <option value="Grande">Grande</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="fonte-form" for="Horario">Horário</label>
+                        <input type="datetime-local" class="form-control" id="Horario" name="Horario" required>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 40px; margin-left: auto">
+                    <label class="checkbox-inline">@Html.CheckBoxFor(x => x.Arroz, new { id = "arroz" })Arroz</label>
+                    <label class="checkbox-inline">@Html.CheckBoxFor(x => x.Feijao, new { id = "feijao" })Feijão</label>
+                    <label class="checkbox-inline">@Html.CheckBoxFor(x => x.Refogado, new { id = "refogado" })Refogado</label>
+                    <label class="checkbox-inline">@Html.CheckBoxFor(x => x.Proteina, new { id = "proteina" })Proteina</label>
+                    <label class="checkbox-inline">@Html.CheckBoxFor(x => x.Salada, new { id = "salada" })Salada</label>
+                </div>
+
+                <div class="row" align="right" style="margin-top: 50px">
+                    @Html.ActionLink("Voltar", "Index", "Home", null, new { @class = "btn btn-primary" })
+                    <button id="btnFinalizar" type="submit" class="btn btn-success">Finalizar pedido</button>
+                </div>
+            }
+        </fieldset>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $.each($("input[type='checkbox']:checked"), function () {
+                $(this).prop('checked', false);
+            });
+
+            $("#btnFinalizar").click(function () {
+                var check = $("input[type='checkbox']:checked");
+
+                if (check.length == 0) {
+                    alert("Selecione pelo menos uma opção!");
+                }
+            });
+
+            $("#form").reset();
+        });
+    </script>
+}

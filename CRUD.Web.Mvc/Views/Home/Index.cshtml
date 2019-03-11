@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Início";
+}
+
+<div class="jumbotron jumbotron-fluid" style="margin-top: 70px">
+    <div class="container">
+        <fieldset class="border p-2">
+            <legend class="w-auto">Selecione seu perfil</legend>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="radio-inline">
+                        <input type="radio" name="Perfil" value="restaurante" checked>Restaurante
+                    </label>
+                </div>
+                <div class="col-sm-6">
+                    <label class="radio-inline">
+                        <input type="radio" name="Perfil" value="funcionario">Funcionário
+                    </label>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px" align="right">
+                <button id="btnContinuar" type="button" class="btn btn-primary">Continuar</button>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#btnContinuar").click(function () {
+                window.location.href = "/Pedido/Index?perfil=" + $("input[name='Perfil']:checked").val();
+            });
+        });
+    </script>
+}
