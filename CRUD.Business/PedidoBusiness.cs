@@ -22,9 +22,9 @@ namespace CRUD.Business
             _data.Salvar(pedido);
         }
 
-        public ICollection<Pedido> Recuperar()
+        public ICollection<Pedido> Recuperar(DateTime data)
         {
-            return _data.Recuperar();
+            return _data.Recuperar(data);
         }
     }
 }

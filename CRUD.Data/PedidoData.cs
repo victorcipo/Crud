@@ -20,15 +20,15 @@ namespace CRUD.Data
             }
         }
 
-        public ICollection<Pedido> Recuperar()
+        public ICollection<Pedido> Recuperar(DateTime data)
         {
             using (var ctx = new CRUDContext())
             {
                 return ctx.Pedido
                     .Include(x => x.Empresa)
-                    .Where(x => x.Horario.Day == DateTime.Now.Day
-                        && x.Horario.Month == DateTime.Now.Month
-                        && x.Horario.Year == DateTime.Now.Year)
+                    .Where(x => x.Horario.Day == data.Day
+                        && x.Horario.Month == data.Month
+                        && x.Horario.Year == data.Year)
                     .ToList();
             }
         }

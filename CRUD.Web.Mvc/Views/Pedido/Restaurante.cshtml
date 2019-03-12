@@ -5,7 +5,16 @@
 
 <div class="jumbotron jumbotron-fluid" style="margin-top: 70px">
     <div class="container">
-        <table class="table table-striped">
+        <div class="form-group">
+            <label class="fonte-form" for="Horario">Data</label>
+
+            <div class="form-inline">
+                <input type="date" class="form-control" id="Horario" name="Horario">
+                <button id="btnFiltrar" type="submit" class="btn btn-success">Filtrar</button>
+            </div>
+        </div>
+
+        <table class="table table-striped" style="margin-top: 50px">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -79,3 +88,12 @@
     </div>
 </div>
 
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#btnFiltrar").click(function () {
+                window.location.href = "/Pedido/Restaurante?data=" + $("#Horario").val();
+            });
+        });
+    </script>
+}

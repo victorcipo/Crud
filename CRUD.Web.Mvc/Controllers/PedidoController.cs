@@ -30,9 +30,12 @@ namespace CRUD.Web.Mvc.Controllers
             return View();
         }
 
-        public ActionResult Restaurante()
+        public ActionResult Restaurante(DateTime? data)
         {
-            var pedidos = _pedidoBusiness.Recuperar();
+            if (data == null)
+                data = DateTime.Now;
+
+            var pedidos = _pedidoBusiness.Recuperar(data.Value);
 
             return View(pedidos);
         }
