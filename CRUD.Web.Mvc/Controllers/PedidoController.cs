@@ -11,6 +11,15 @@ namespace CRUD.Web.Mvc.Controllers
 {
     public class PedidoController : Controller
     {
+        private readonly EmpresaBusiness _empresaBusiness;
+        private readonly PedidoBusiness  _pedidoBusiness;
+
+        public PedidoController()
+        {
+            _empresaBusiness = new EmpresaBusiness();
+            _pedidoBusiness = new PedidoBusiness();
+        }
+
         public ActionResult Index(string perfil)
         {
             if (perfil == "restaurante")
@@ -23,16 +32,14 @@ namespace CRUD.Web.Mvc.Controllers
 
         public ActionResult Restaurante()
         {
-            var pedidoBusiness = new PedidoBusiness();
-            var pedidos = pedidoBusiness.Recuperar();
+            var pedidos = _pedidoBusiness.Recuperar();
 
             return View(pedidos);
         }
 
         public ActionResult Funcionario()
         {
-            var empresaBusiness = new EmpresaBusiness();
-            var empresas = empresaBusiness.RecuperarTodas();
+            var empresas = _empresaBusiness.RecuperarTodas();
 
             var vm = new FuncionarioVM
             {
@@ -48,11 +55,8 @@ namespace CRUD.Web.Mvc.Controllers
 
         [HttpPost]
         public ActionResult RealizarPedido(FuncionarioVM pedidoVM)
-        {
-            var pedidoBusiness = new PedidoBusiness();
-            var empresaBusiness = new EmpresaBusiness();
-            
-            var empresas = empresaBusiness.RecuperarTodas();
+        {            
+            var empresas = _empresaBusiness.RecuperarTodas();
 
             var vm = new FuncionarioVM
             {
@@ -77,7 +81,7 @@ namespace CRUD.Web.Mvc.Controllers
                     throw new Exception("Data menor que a atual ou inválida!");
                 }
 
-                pedidoBusiness.Salvar(ConverterViewModel(pedidoVM));
+                _pedidoBusiness.Salvar(ConverterViewModel(pedidoVM));
 
                 ViewBag.ClasseAlert = "alert-success";
                 ViewBag.Mensagem = "Pedido realizado com sucesso!";

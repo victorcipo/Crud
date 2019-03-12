@@ -10,10 +10,15 @@ namespace CRUD.Business
 {
     public class EmpresaBusiness
     {
+        private readonly EmpresaData _data;
+
+        public EmpresaBusiness()
+        {
+            _data = new EmpresaData();
+        }
         public IEnumerable<Empresa> RecuperarTodas()
         {
-            var data = new EmpresaData();
-            return data.RecuperarTodas();
+            return _data.RecuperarTodas();
         }
     }
 }

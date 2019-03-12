@@ -10,16 +10,21 @@ namespace CRUD.Business
 {
     public class PedidoBusiness
     {
+        private readonly PedidoData _data;
+
+        public PedidoBusiness()
+        {
+            _data = new PedidoData();
+        }
+
         public void Salvar(Pedido pedido)
         {
-            var pedidoData = new PedidoData();
-            pedidoData.Salvar(pedido);
+            _data.Salvar(pedido);
         }
 
         public ICollection<Pedido> Recuperar()
         {
-            var pedidoData = new PedidoData();
-            return pedidoData.Recuperar();
+            return _data.Recuperar();
         }
     }
 }
