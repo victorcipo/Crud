@@ -71,16 +71,6 @@
             $.each($("input[type='checkbox']:checked"), function () {
                 $(this).prop('checked', false);
             });
-
-            $("#btnFinalizar").click(function () {
-                var check = $("input[type='checkbox']:checked");
-
-                if (check.length == 0) {
-                    alert("Selecione pelo menos uma opção!");
-                }
-            });
-
-            $("#form").reset();
         });
     </script>
 }

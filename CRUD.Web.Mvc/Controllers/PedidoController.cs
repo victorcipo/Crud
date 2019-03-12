@@ -65,6 +65,12 @@ namespace CRUD.Web.Mvc.Controllers
 
             try
             {
+                if(pedidoVM.Arroz == false && pedidoVM.Feijao == false && pedidoVM.Refogado == false
+                    && pedidoVM.Proteina == false && pedidoVM.Salada == false)
+                {
+                    throw new Exception("Selecione ao menos uma opção para compor sua refeição!");
+                }
+
                 DateTime temp;
                 if (pedidoVM.Horario.Date < DateTime.Now.Date && DateTime.TryParse(pedidoVM.Horario.ToString(), out temp))
                 {
