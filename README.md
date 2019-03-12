@@ -1,1 +1,1 @@
-Antes de compilar o projeto, executar o script para criação da base de dados, localizado em CRUD.Data > ScriptCrud.sql
+Projeto feito em .NET. Para usar é necessário o VS2017 e SQL Server 2014+. Feito o download é necessário executar o script .SQL localizado em CRUD.Data > ScriptCrud.sql e mudar a connection string no projeto MVC.
